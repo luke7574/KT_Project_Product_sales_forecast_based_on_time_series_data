@@ -1,109 +1,100 @@
-# 장애인 콜택시 대기시간 예측 
+# 시계열 데이터 기반 상품 판매량 예측
 ---
 ## 프로젝트 개요
-- 주제 : 장애인 이동권 개선을 위한 장애인 콜택시 대기시간 예측
-- 학습 과목 : 데이터전처리, 데이터분석, 머신러닝
-- 데이터 출처 : <https://www.data.go.kr/data/15057705/openapi.do>
-- 중점 사항 : 시계열 데이터 전처리, 단변량/이변량 분석, ML 모델링
-- 프로젝트 목표 : 장애인 콜택시를 이용하는 고객들의 불편사항을 개선하고 서비스의 품질을 높이기 위해 콜택시 운행이 종료된 시점에 다음 날의 기상 예보를 바탕으로 기상 상황에 따른 장애인 콜택시의 평균 대기 시간을 예측하고 예상 대기시간을 제공할 수 있는 모델 완성
+- 주제 : 시계열 데이터 기반 상품 판매량 예측
+- 학습 과목 : 데이터전처리, 데이터분석, 딥러닝 모델링
+- 데이터 출처 : 자체제작
+- 중점 사항 : 시계열 데이터 전처리, 딥러닝 모델 구축, 기술 및 비지니스 측면 모델 성능 평가
+- 프로젝트 목표 : 각 상품에 대한 판매량 데이터에 대해서 시계열 패턴을 찾은 후 딥러닝 모델을 통해 각 상품의 판매량을 미리 예측하는 서비스를 구현.
 ---
 
 ## 도메인 이해 
-![image](https://github.com/user-attachments/assets/e98b8d49-f9b8-465f-b54a-70cced5fc309)
-![image](https://github.com/user-attachments/assets/8b47a077-f8c3-441b-8d7c-6b5eb539cc30)
-![image](https://github.com/user-attachments/assets/5b28fa39-52a6-4997-98ab-9653c477368f)
-![image](https://github.com/user-attachments/assets/ce59a873-a7b3-4e52-8300-011d52d88683)
-![image](https://github.com/user-attachments/assets/df600ce8-f2f1-4544-a668-e1e70d906a99)
-![image](https://github.com/user-attachments/assets/450669e2-3a86-4a8d-92e3-8e156b8c3980)
+![image](https://github.com/user-attachments/assets/82bbdd7c-ee7c-41f2-b76f-efe7a0eb4bed)
+![image](https://github.com/user-attachments/assets/94720511-2008-4f01-b85b-8b8c6ecda25b)
+![image](https://github.com/user-attachments/assets/2ddd0e97-362d-4961-aa68-acf922286582)
+
 ---
 
 ## 데이터 소개 
 
-![image](https://github.com/user-attachments/assets/7677a115-687a-446d-bfc5-1fb65c6c9236)
+![image](https://github.com/user-attachments/assets/26c60e57-4cd9-47a7-97fd-f7816d6a822e)
 
-- 장애인 콜택시 운행정보
-![image](https://github.com/user-attachments/assets/ef7247f2-b312-4568-a5b6-3b5c850d2f50)
-
-
-- 날씨 정보
-![image](https://github.com/user-attachments/assets/8e8bc27a-7185-4a1c-a433-8bfca16e1602)
----
 
 ## 핵심 사항 
 
-![image](https://github.com/user-attachments/assets/e599475a-551a-43d4-8bbd-3b583e66d15f)
+![image](https://github.com/user-attachments/assets/8bb06096-c062-4dba-9394-4ebc3f1d0189)
+
+- **3가지 상품(3번:음료 / 12번:우유 / 42번:농업 제품)에 대한 수요량을 예측하고 재고를 최적화 해야 함**
+
+  ![image](https://github.com/user-attachments/assets/8d2b08bb-a9bc-4d35-8c7e-9010033356ac)
+
+- **시계열 데이터 분석 큰 그림**
+
+![image](https://github.com/user-attachments/assets/a1efd541-2ad4-49b9-a1bb-67fad0ac3cc0)
 
 ---
-## 데이터 분석 및 전처리 
-- 익일의 대기시간(waiting_time)을 오늘의 데이터를 활용해 예측해야 하는 대상(target)으로 설정
+## 데이터 분석 및 전처리
+- 대상 매장에서 날짜별 구매고객수
 
-![image](https://github.com/user-attachments/assets/52a3736f-3010-472e-9eab-17dbf8932712)
+  ![image](https://github.com/user-attachments/assets/b4afcccb-8eb3-46ea-be31-0bb480c2df2d)
+1) 매년 5월 7 - 10일 고객구매수 높은편(2014/5/10, 2015/5/9, 2016/5/7)/ 매년 12월 20~25일 고객구매수 높음
+2) 미국 어머니날 (2014/5/11 일요일, 2015/5/10 일요일, 2016/5/8 일요일) 하루전날에 높은것을 확인
 
-- target과 다른 변수들간의 상관 관계 확인
-![image](https://github.com/user-attachments/assets/7f10655a-01d5-4783-b22d-f927d95b2af6)
+### 1. Beverage
+- 날짜별 상품 판매량
+![image](https://github.com/user-attachments/assets/0551dd58-1448-40e2-bd51-871170336cea)
 
-- target 과 ride_ratio간의 산점도
+- 요일별 판매량
+![image](https://github.com/user-attachments/assets/cfd3acda-0b43-4a8c-a332-c11ede3df67b)
 
-  ![image](https://github.com/user-attachments/assets/a5d7a8d9-268a-4dae-8302-59173f11e0a8)
+- 시계열 데이터 분해
 
-- 운임요금과 요일별 target 산점도
+  ![image](https://github.com/user-attachments/assets/4ef1149c-7a7a-49df-925a-a01ae09701a4)
 
-  ![image](https://github.com/user-attachments/assets/f8aa2550-5e54-417b-9a45-45ba2e8b4b7b)
+- **패턴 정리하기**
+1) 2016-04-17 -> 판매량이 가장높음 / 대부분 주말에 음료판매량 높음
+2) 요일별 판매변화량 높은순  목요일 금요일 -> 리드타임후 판매변화량 높음/ 토요일 일요일 -> 매우낮음
 
-## 범주형 변수들과 target 간의 관계 
-- 휴일 여부
+### 2. Milk
+- 날짜별 상품 판매량
+![image](https://github.com/user-attachments/assets/f957ec61-f450-4eb1-8f3c-1109c8232d45)
 
-  ![image](https://github.com/user-attachments/assets/6711b43b-681b-4971-b38c-fa8fd60ae64f)
-  ### Ttest_indResult(statistic=5.078160958101015, pvalue=4.0505005123594406e-07)
----
-- 주말 여부
+- 요일별 판매량
+![image](https://github.com/user-attachments/assets/28b0f88e-7df5-45b9-aa0e-5e38e935e1ee)
 
-  ![image](https://github.com/user-attachments/assets/003d00db-c02f-4ced-b0de-bc5f094ed601)
-  ### Ttest_indResult(statistic=7.917032903397524, pvalue=3.42488756704735e-15)
----
-- 코로나 여부
+- 방문 고객수와 상품 판매량 추이 비교
 
-  ![image](https://github.com/user-attachments/assets/cbb89c1d-382b-4324-8785-8d665d1f7098)
-  ### Ttest_indResult(statistic=31.718933261457867, pvalue=5.512162412795066e-190)
----
-- 요일 여부
+  ![image](https://github.com/user-attachments/assets/694b09c1-2112-4366-8ee2-e9c4c5c4f263)
 
-  ![image](https://github.com/user-attachments/assets/8ced0774-2a49-4ec0-b046-79cf89ec6535)
-  ### F_onewayResult(statistic=15.668738200566109, pvalue=8.766163819661817e-18)
----
-- 계절 여부
+- 시계열 데이터 분해
 
-  ![image](https://github.com/user-attachments/assets/7c3d921f-b0a2-402b-8932-1541a064841e)
-  ### F_onewayResult(statistic=34.73562423868687, pvalue=4.719868115759872e-22)
----
+  ![image](https://github.com/user-attachments/assets/311d2b35-69fe-49b4-9d8c-f42b362fca93)
+- **패턴 정리하기**
+1) 상품을 시계열 분해 함수로 분석해보면 1월부터 12월까지는 증가하는 추세를 보이다 1월에는 다시 값이 급감하는 추세를 보이고 1주일의 계절성을 지닌 것으로 보임
+2) 연도가 증가할수록 판매량도 증가, 연도마다 12월에 가장 많은 판매량인것을 확인
+3) 방문 고객에 따른 상품판매량의 강한 연관성을 보임
+4) 주말과 평일을 비교해봤을 때 주말이 평일보다 2배가량 높은 수치를 보임
 
-## 변수 정리 
-### 강한 관계의 변수
-- 'count_taxi': 운행 된 차량 수 , 'receipt': 접수 건수, 'boarding': 이용 건수, 'avg_rate': 평균요금, 'avg_ride_distance': 평균 거리, 'ride_ratio': 
-- 'covid_19': 코로나 발생 시점 ~ 집합 금지, 집합 금지 ~ 사회적 거리두기, 그 이후로 3분류
-- 'holiday', 'day7_avg_wait_time', 'ride_ratio', 
-- 'weekend_holiday', 'weekday_Saturday', 'weekday_Sunday', 'rainyday'
-### 약한 관계의 변수
-- 'temp_max', 'temp_min' -> 'temp_avg'로 치환
-- 'humidity_max(%)', 'humidity_min(%)' -> 'humidity_avg'로 치환
-- 'month'
-- 'weekend', 'weekday_Monday', 'weekday_Tuesday', 'weekday_Wednesday', 'weekday_Thursday', 'weekday_Friday' -> 평일의 요일 간 차이는 없다고 보고 평일/토요일/일요일로 나눔  
 
-### 관계가 없는 변수 
-- 'season_Spring', 'season_Summer', 'season_Fall', 'season_Winter' -> 날씨 정보와 상관없이 '달'로 구분했기 때문에 관계가 적다고 생각
-- 'sunshine(MJ/m2)'
+### 3. Agricultural products
+- 날짜별 상품 판매량
+![image](https://github.com/user-attachments/assets/30db56e3-a083-4464-8d93-44ba3b3e4879)
 
----
-## 파생변수 추가
-### Rainy dat 변수 생성
-- rain(mm)이 2이상이면 1 아니면 0으로 rainyday 파생변수 생성
-### 코로나 파생 변수 생성
-- 코로나 발생 시점 ~ 집합 금지 기간 (2020-01-20~2020-04-19) -> 2
-- 집합 금지 해제 ~ 사회적 거리두기 (2020-04-20 ~ 2022-04-18) -> 1
-- 코로나 기간이 아닌 기간 -> 0
+- 방문 고객수와 상품 판매량 추이 비교
 
-  ![image](https://github.com/user-attachments/assets/38132ecf-3cfb-4068-b24e-3c62c01096c0)
-  ![image](https://github.com/user-attachments/assets/6f2cbbec-a9fc-44a5-ad7f-541869b43d5f)
+  ![image](https://github.com/user-attachments/assets/c772fb67-3791-4e6e-9090-6f4262bd90ac)
+
+- 요일별 판매량
+![image](https://github.com/user-attachments/assets/46cbc49f-b0ff-42a0-846a-07621fa6a1ff)
+
+- 시계열 데이터 분해
+
+  ![image](https://github.com/user-attachments/assets/adaf17da-d24b-4223-b2cb-65fa11943c6f)
+- **패턴 정리하기**
+1) 상품을 시계열 분해 함수로 분석해보면 판매량은 계절성을 띈다. 여름철에 증가, 겨울철에 감소
+2) 2016년 10월 7일 조지아 주 애틀랜타 시티에 폭발적인 판매량 확인됨 (원인: 비가 왔다는 점 말고는 특이 사항 없음)
+3) 월요일부터 일요일까지 판매량이 증가
+
 
 ---
 ## 모델링
