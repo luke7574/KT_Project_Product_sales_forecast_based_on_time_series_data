@@ -1,1 +1,0 @@
-# KT_Project_Product_sales_forecast_based_on_time_series_data
