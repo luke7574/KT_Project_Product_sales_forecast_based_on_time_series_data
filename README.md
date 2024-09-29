@@ -95,65 +95,67 @@
 2) 2016년 10월 7일 조지아 주 애틀랜타 시티에 폭발적인 판매량 확인됨 (원인: 비가 왔다는 점 말고는 특이 사항 없음)
 3) 월요일부터 일요일까지 판매량이 증가
 
+- **데이터 전처리**
+
+  ![image](https://github.com/user-attachments/assets/40b07f1d-d716-4e49-b9bc-9c7663ca0f26)
+1) df['Lead_Qty'] -> 추후 target 변수
+2) 요일 변수와 주말여부 변수 추가
 
 ---
 ## 모델링
-- 스케일링 작업시 ['boarding', 'receipt'] 에는 MinMaxScaler진행 / ['avg_ride_distance', 'avg_rate', 'count_taxi'] 에는 Robust_Scailing(이상치가 있는 feature에서 좋은 결과를 보여줌)진행
-1) Linear Regression
-![image](https://github.com/user-attachments/assets/11bf271b-0963-412a-84e5-2202f2e81653)
-![image](https://github.com/user-attachments/assets/5d4825d4-0692-4ce5-be52-29abe7e1f7c5)
+- **LSTM 모델링 , CNN 모델링 두가지로 진행(각각 세가지 상품에 대해)**
+### LSTM 모델링
+1) Beverage
+
+   ![image](https://github.com/user-attachments/assets/1762937b-56e0-43f2-bf9c-e5e95a2201a0)
+   ![image](https://github.com/user-attachments/assets/181f9912-cb42-412e-8ee5-58d1f8a5e77e)
+
+2) Milk
+
+   ![image](https://github.com/user-attachments/assets/525384b4-2b54-4df1-a3c9-e34336c136f5)
+   ![image](https://github.com/user-attachments/assets/d88fed4d-1fe4-47b7-b71d-de3ca2974d26)
 
 
-2) Lasso Regression
-![image](https://github.com/user-attachments/assets/09ff1240-54a8-4925-84a0-b06245124c0e)
-![image](https://github.com/user-attachments/assets/52379464-156f-46e1-b494-36749431c45a)
+3) Agricultural products
+
+   ![image](https://github.com/user-attachments/assets/d42a94dd-44bc-41a2-aee5-d0fdcee1ad96)
+   ![image](https://github.com/user-attachments/assets/d3af6100-f0b2-474d-9495-cd7dcd4b2c61)
+---
+### CNN 모델링
+1) Beverage
+
+   ![image](https://github.com/user-attachments/assets/8dafe4df-040f-4f06-8d44-31c4554f30d4)
+   ![image](https://github.com/user-attachments/assets/691c24ab-c9a7-4e6a-804f-30ba4f13273e)
 
 
-3) Ridge Regression
-![image](https://github.com/user-attachments/assets/7cd18837-5a1b-4dac-84a2-052eee53c100)
-![image](https://github.com/user-attachments/assets/2fa3186f-50d8-43a9-a65b-d464c721fa34)
+2) Milk
 
+   ![image](https://github.com/user-attachments/assets/2462bc42-cca7-4188-ad05-2303fb089095)
+   ![image](https://github.com/user-attachments/assets/8332781f-1783-4f3f-94dc-a4d64cb9d269)
 
-4) ElasticNet
-![image](https://github.com/user-attachments/assets/3874277f-ec49-4313-a0fe-ffe6eaa9c21b)
-![image](https://github.com/user-attachments/assets/7601b9ce-5f73-4c86-8651-a5376aa279f2)
+3) Agricultural products
 
-
-5) KNN
-![image](https://github.com/user-attachments/assets/9072f62f-d8cf-4afc-a9b2-cd5243cf3926)
-![image](https://github.com/user-attachments/assets/9263b0c9-d66a-4453-bf30-f6ebcaa84505)
-
-
-6) Decision Tree
-![image](https://github.com/user-attachments/assets/bb526bea-ee42-4ac5-88d4-4d1d6202cf07)
-![image](https://github.com/user-attachments/assets/2f755f6a-469c-4c08-8a9e-40afbab060db)
-
-
-7) Random Forest
-![image](https://github.com/user-attachments/assets/2f1420ed-ebda-4407-8a34-876671105041)
-![image](https://github.com/user-attachments/assets/26316b26-40da-49eb-bc1c-1539d32f6fab)
-
-
-8) LightGBM
-![image](https://github.com/user-attachments/assets/30c1b8e5-2137-4b4b-8244-6f6462937bc4)
-![image](https://github.com/user-attachments/assets/decde94b-6d7b-4001-a6ad-f793e5d5b0eb)
-
-
-9) XGBoost
-![image](https://github.com/user-attachments/assets/60f5c6a8-b5ee-4cb5-9559-270627d4b7e8)
-![image](https://github.com/user-attachments/assets/f81d250c-7509-4294-bc52-264f2b9b3b11)
-
-
-10) Gradient Boosting
-![image](https://github.com/user-attachments/assets/7ca32345-5873-433d-9364-383c4245af5b)
-![image](https://github.com/user-attachments/assets/786c2d1f-83bd-4238-9a46-6aa07d26a3c3)
+   ![image](https://github.com/user-attachments/assets/ac14f801-e9e6-4d2b-9ba4-a05920b8adb0)
+   ![image](https://github.com/user-attachments/assets/b62c1b1c-ae24-4a4a-9bc5-f9486811b115)
 
 
 
-### 최종 모델
-- **총 10개의 모델을 돌려본 결과 Ridge 모델의 성능이 가장 좋았다.**
+### 최종 모델 (직접 파이프라인 함수를 작성하여 재고손실율을 확인)
+- Beverage
 
-  ![image](https://github.com/user-attachments/assets/48813c6b-9312-4c22-82f5-bcefe4297588)
+  ![image](https://github.com/user-attachments/assets/e621d4da-2e0a-4b2e-979d-405b87826f8a)
+
+- Milk
+
+  ![image](https://github.com/user-attachments/assets/09b88a5f-b75c-4c59-bc58-55a2b797a094)
+
+- Agricultural products
+
+  ![image](https://github.com/user-attachments/assets/fab0acec-c205-4edf-8207-93f176587a60)
+
+
+
+
 
 
 
