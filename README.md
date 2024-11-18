@@ -140,7 +140,7 @@
 
 
 
-### 최종 모델 (직접 파이프라인 함수를 작성하여 재고손실율을 확인)
+### 최종 모델 (LSTM 모델 선정 / 직접 파이프라인 함수를 작성하여 재고손실율을 확인)
 - Beverage
 
   ![image](https://github.com/user-attachments/assets/e621d4da-2e0a-4b2e-979d-405b87826f8a)
