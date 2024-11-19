@@ -108,34 +108,40 @@
 1) Beverage
 
    ![image](https://github.com/user-attachments/assets/1762937b-56e0-43f2-bf9c-e5e95a2201a0)
-   ![image](https://github.com/user-attachments/assets/181f9912-cb42-412e-8ee5-58d1f8a5e77e)
+   ![스크린샷 2024-11-19 182359](https://github.com/user-attachments/assets/98ac5a3b-bda9-4f26-a9ff-701877998f02)
+
 
 2) Milk
 
    ![image](https://github.com/user-attachments/assets/525384b4-2b54-4df1-a3c9-e34336c136f5)
+
    ![image](https://github.com/user-attachments/assets/d88fed4d-1fe4-47b7-b71d-de3ca2974d26)
 
 
 3) Agricultural products
 
    ![image](https://github.com/user-attachments/assets/d42a94dd-44bc-41a2-aee5-d0fdcee1ad96)
+
    ![image](https://github.com/user-attachments/assets/d3af6100-f0b2-474d-9495-cd7dcd4b2c61)
 ---
 ### CNN 모델링
 1) Beverage
 
    ![image](https://github.com/user-attachments/assets/8dafe4df-040f-4f06-8d44-31c4554f30d4)
+
    ![image](https://github.com/user-attachments/assets/691c24ab-c9a7-4e6a-804f-30ba4f13273e)
 
 
 2) Milk
 
    ![image](https://github.com/user-attachments/assets/2462bc42-cca7-4188-ad05-2303fb089095)
+
    ![image](https://github.com/user-attachments/assets/8332781f-1783-4f3f-94dc-a4d64cb9d269)
 
 3) Agricultural products
 
    ![image](https://github.com/user-attachments/assets/ac14f801-e9e6-4d2b-9ba4-a05920b8adb0)
+
    ![image](https://github.com/user-attachments/assets/b62c1b1c-ae24-4a4a-9bc5-f9486811b115)
 
 
